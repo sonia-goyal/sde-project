@@ -3,37 +3,39 @@ import pandas as pd
 
 
 def get_data():
+    # Need to change to get data from get_data_links and filter for github project with python language
     df = pd.read_csv('sonarcube_data_1.csv')
-    print(df.head())
 
-    # print(df[['key']].head())
+    project_keys = df['key']
 
-    dict1 = []
-    for project_key in df[['key']][:2]:
+    ls = []
+    for project_key in project_keys[:10]:
+        dict1 = {}
+        print(project_key)
         url = 'https://sonarcloud.io/api/measures/component?' \
-              'component=' + project_key + '&metricKeys=ncloc,complexity,violations,bugs,code_smells'
-        payload = {}
-        headers = {}
+              'component=' + str(project_key) + '&metricKeys=ncloc,complexity,violations,bugs,code_smells'
 
-        response = requests.request("GET", url, headers=headers, data=payload)
-        print(response.json())
+        response = requests.request("GET", url, headers={}, data={})
         response = response.json()
-        measures = response['component']['measures']
         print(response)
-        # for measure in measures:
-        #     if
-        # dict1['project_key'] = project_key
-        # dict1['ncloc'] = response[]
-    #     if response.status_code == 400:
-    #         break
-    #     else:
-    #         response = response.json()
-    #         sub_df = pd.DataFrame(response['components'])
-    #         df = pd.concat([df, sub_df])
-    #
-    # # print(df.head())
-    # df = df.sort_values(by='organization')
-    # df.to_csv('sonarcube_data_1.csv', index=False)
+        if response['component']['measures']:
+            measures = response['component']['measures']
+            dict1['project_key'] = project_key
+            for i in measures:
+                if i['metric'] == 'complexity':
+                    dict1['complexoty'] = i['value']
+                elif i['metric'] == 'bugs':
+                    dict1['bugs'] = i['value']
+                elif i['metric'] == 'code_smells':
+                    dict1['code_smell'] = i['value']
+                elif i['metric'] == 'ncloc':
+                    dict1['ncloc'] = i['value']
+                elif i['metric'] == 'violations':
+                    dict1['violations'] = i['value']
+
+
+        ls.append(dict1)
+    print(ls)
 
 
 if __name__ == '__main__':
