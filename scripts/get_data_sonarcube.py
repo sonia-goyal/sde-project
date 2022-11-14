@@ -3,6 +3,9 @@ import pandas as pd
 
 
 def get_sonarcube_data():
+    """
+        Get all the public projects available in sonarcube
+    """
     df = pd.DataFrame()
     for i in range(1, 210):
         print(f"====== Interation {i} ======")
@@ -20,9 +23,11 @@ def get_sonarcube_data():
             sub_df = pd.DataFrame(response['components'])
             df = pd.concat([df, sub_df])
 
-    # print(df.head())
+    """
+        Write data into a csv
+    """
     df = df.sort_values(by='organization')
-    df.to_csv('sonarcube_data_1.csv', index=False)
+    df.to_csv('sonarcube_data_projects.csv', index=False)
 
 
 if __name__ == '__main__':
