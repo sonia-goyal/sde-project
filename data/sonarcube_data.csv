@@ -1,5 +1,4 @@
 project_key,project_url,project_type,languages,complexoty,bugs,code_smell,ncloc,violations
-project_key,project_url,project_type,languages,complexoty,bugs,code_smell,ncloc,violations
 0-1com_bbc1,https://github.com/0-1com/bbc1,github,apex|css|js|json|py|web|,6318,236,1630,40833,1866
 MarioTesoro_Web_scraping,https://github.com/MarioTesoro/Web_scraping,github,py|,206,0,273,1012,273
 21epub_epub-python-core,https://github.com/21epub/epub-python-core,github,py|,262,0,31,3813,31
