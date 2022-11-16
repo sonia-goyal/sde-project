@@ -62,7 +62,7 @@ def get_data():
     """
     df = pd.merge(filtered_data, df1, on=['project_key'])
 
-    df.to_csv('sonarcube_data.csv', index=False, mode='a', header=True)
+    df.to_csv('../data/sonarcube_data.csv', index=False, mode='a', header=True)
 
 
 if __name__ == '__main__':
