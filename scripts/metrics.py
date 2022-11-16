@@ -4,7 +4,7 @@ from datetime import datetime
 
 def get_metrics():
     df_sonarcube = pd.read_csv('../data/sonar_quality_profile.csv')
-    df_travis = pd.read_csv('../data/travis_data_1.csv')
+    df_travis = pd.read_csv('../data/travis_data.csv')
 
     project_url = df_travis['project_url']
     project_url = project_url.unique()
