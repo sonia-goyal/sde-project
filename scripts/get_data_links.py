@@ -48,7 +48,7 @@ def get_data():
         """
         df1 = pd.DataFrame(ls)
         print(df1.head())
-        df1.to_csv('sonarcube_data_with_repo_link.csv', index=False, mode='a', header=False)
+        df1.to_csv('../data/sonarcube_data_with_repo_link.csv', index=False, mode='a', header=False)
 
 
 if __name__ == '__main__':
