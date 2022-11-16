@@ -4,7 +4,7 @@ import pandas as pd
 
 def get_data():
     # Read all the public project on github
-    df = pd.read_csv('../data/travis_data.csv')
+    df = pd.read_csv('../data/sonarcube_data.csv')
 
     """
         Filter data for github python projects
@@ -53,7 +53,7 @@ def get_data():
     df = pd.DataFrame(ls)
     print(df.head())
 
-    df.to_csv('../data/travis_data_1.csv', index=False, header=True)
+    df.to_csv('../data/travis_data.csv', index=False, header=True)
 
 
 if __name__ == '__main__':
