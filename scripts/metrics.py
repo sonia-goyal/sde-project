@@ -49,7 +49,7 @@ def get_metrics():
 
     print("Metric 2: Elapsed Time between checks")
     etc = sum(ls)/len(ls)
-    print(f"EFC: {etc}")
+    print(f"ETC: {etc}")
 
     """
             Metric 3
