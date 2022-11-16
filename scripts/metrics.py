@@ -14,7 +14,7 @@ def get_metrics():
         Metric 1
     """
     df = pd.DataFrame()
-    for project in project_url[:2]:
+    for project in project_url:
         df_sonarcube_sub = df_sonarcube.loc[df_sonarcube['project_url'] == project]
         df_travis_sub = df_travis.loc[df_travis['project_url'] == project]
         df_sonarcube_sub = df_sonarcube_sub.sort_values(by=['quality_profile_date']).reset_index()
@@ -38,7 +38,7 @@ def get_metrics():
             Metric 2
     """
     ls = []
-    for project in project_url[:2]:
+    for project in project_url:
         df_sub = df.loc[df['project_url'] == project]
         df_sub = df_sub.loc[df['sonar_build'] == 1].reset_index()
         for i in range(df_sub.shape[0] - 1):
