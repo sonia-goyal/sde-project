@@ -6,38 +6,27 @@ def get_metrics():
     df_sonarcube = pd.read_csv('../data/sonar_quality_profile.csv')
     df_travis = pd.read_csv('../data/travis_data_1.csv')
 
-    # print(df_sonarcube.shape, df_travis.shape)
-    # print(df_sonarcube.head())
-    # print(df_travis.head())
-
     project_url = df_travis['project_url']
     project_url = project_url.unique()
     print(len(project_url))
 
-    df = pd.DataFrame()
-
     """
         Metric 1
     """
+    df = pd.DataFrame()
     for project in project_url[:2]:
         df_sonarcube_sub = df_sonarcube.loc[df_sonarcube['project_url'] == project]
         df_travis_sub = df_travis.loc[df_travis['project_url'] == project]
         df_sonarcube_sub = df_sonarcube_sub.sort_values(by=['quality_profile_date']).reset_index()
         df_travis_sub = df_travis_sub.sort_values(by=['started_at']).reset_index()
         df_travis_sub['sonar_build'] = 0
-        # print(df_sonarcube_sub)
-        # print("======================")
-        # print(df_travis_sub[['project_url', 'started_at', 'sonar_build']])
-        # print("======================")
         for i in range(df_travis_sub.shape[0]-1):
             build1 = df_travis_sub.loc[i, 'started_at']
             build2 = df_travis_sub.loc[i+1, 'started_at']
-            # print(f"start1: {build1} start2: {build2}")
             rows = df_sonarcube_sub.query('quality_profile_date >= @build1 and quality_profile_date <= @build2')
             if rows.shape[0] > 0:
                 df_travis_sub.loc[i, 'sonar_build'] = 1
 
-        # print(df_travis_sub[['project_url', 'started_at', 'sonar_build']])
         df = pd.concat([df, df_travis_sub], ignore_index=True)
 
 
@@ -55,9 +44,8 @@ def get_metrics():
         for i in range(df_sub.shape[0] - 1):
             build1 = df_sub.loc[i, 'started_at']
             build2 = df_sub.loc[i + 1, 'started_at']
-            day_diff = datetime.strptime(build2, '%Y-%m-%dT%H:%S:%fZ') - datetime.strptime(build1, '%Y-%m-%dT%H:%S:%fZ')  # 2022-09-17T03:09:31Z
+            day_diff = datetime.strptime(build2, '%Y-%m-%dT%H:%S:%fZ') - datetime.strptime(build1, '%Y-%m-%dT%H:%S:%fZ')
             ls.append(day_diff.days)
-
 
     print("Metric 2: Elapsed Time between checks")
     etc = sum(ls)/len(ls)

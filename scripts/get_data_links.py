@@ -4,7 +4,7 @@ import pandas as pd
 
 def get_data():
     # Read data for all the projects
-    df = pd.read_csv('sonarcube_data_projects.csv')
+    df = pd.read_csv('../data/sonarcube_data_projects.csv')
 
 
     project_keys = df['key']

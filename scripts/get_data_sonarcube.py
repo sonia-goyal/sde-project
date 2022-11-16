@@ -27,7 +27,7 @@ def get_sonarcube_data():
         Write data into a csv
     """
     df = df.sort_values(by='organization')
-    df.to_csv('sonarcube_data_projects.csv', index=False)
+    df.to_csv('../data/sonarcube_data_projects.csv', index=False)
 
 
 if __name__ == '__main__':

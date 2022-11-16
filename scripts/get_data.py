@@ -4,7 +4,7 @@ import pandas as pd
 
 def get_data():
     # Read all the public project on github
-    df = pd.read_csv('sonarcube_data_with_repo_link.csv')
+    df = pd.read_csv('../data/sonarcube_data_with_repo_link.csv')
 
     """
         Filter data for github python projects

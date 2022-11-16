@@ -28,7 +28,7 @@ def get_data():
 
     df1 = pd.DataFrame(ls, columns=['project_key', 'quality_profile_date'])
     final_df = pd.merge(df, df1, on='project_key', how='inner')
-    final_df.to_csv('sonar_quality_profile.csv', index=False, header=True)
+    final_df.to_csv('../data/sonar_quality_profile.csv', index=False, header=True)
 
 
 if __name__ == '__main__':
