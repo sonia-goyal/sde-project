@@ -4,7 +4,7 @@ import pandas as pd
 
 def get_data():
     # Read all the public project on github
-    df = pd.read_csv('../data/sonarcube_data.csv')
+    df = pd.read_csv('../data/travis_data.csv')
 
     """
         Filter data for github python projects
@@ -27,7 +27,7 @@ def get_data():
     for project_key in project_keys:
         print(project_key)
         slug = project_key.split("/")[-2] + "%2F" + project_key.split("/")[-1]
-        url = 'https://api.travis-ci.com/repo/' + str(slug) + '/builds?limit=2'
+        url = 'https://api.travis-ci.com/repo/' + str(slug) + '/builds?limit=20'
         response = requests.request("GET", url, headers=headers, data=payload)
         response = response.json()
 
@@ -53,7 +53,7 @@ def get_data():
     df = pd.DataFrame(ls)
     print(df.head())
 
-    df.to_csv('travis_data.csv', index=False, header=True)
+    df.to_csv('../data/travis_data_1.csv', index=False, header=True)
 
 
 if __name__ == '__main__':
