@@ -21,7 +21,7 @@ If any new dependencies are added use this command to generate a requirement fil
     
     poetry export -f requirements.txt --without-hashes --output requirements.txt
 
-Files: 
+**Scripts Used:** <br><br>
 a) scripts/get_data_sonarcube.py - Uses SonarCube API to get a list of public projects and get attributes like key, organisation_name etc and generates files sonarcube_data_projects.csv.
 
 b) scripts/get_data_links.py - Uses file generated from step a and get project link from SonarCloud API (different endpoint) using the project key generated from step a. It generates sonarcube_data_with_repo_link.csv.
